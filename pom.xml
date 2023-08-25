@@ -11,8 +11,18 @@
     <groupId>com.ligy</groupId>
     <artifactId>Graduation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>Graduation</name>
     <description>Graduation</description>
+    <modules>
+        <module>order</module>
+        <module>product</module>
+        <module>myhome</module>
+        <module>common</module>
+        <module>mall</module>
+        <module>cart</module>
+        <module>gateway</module>
+    </modules>
     <properties>
         <java.version>17</java.version>
     </properties>
