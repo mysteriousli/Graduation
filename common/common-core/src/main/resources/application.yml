@@ -1,0 +1,30 @@
+spring:
+  kafka:
+    template:
+      default-topic: topic
+
+    # kafka地址
+    bootstrap-servers: 172.20.81.47:9092
+    producer:
+      # 重试次数
+      retries: 3
+      # 批量发送消息的数量
+      batch-size: 2
+      # 32MB 批量处理缓冲区
+      buffer-memory: 33554432
+    consumer:
+      # 消费者组
+      group-id: ligy
+      # 最早违背消费的offset
+      auto-offset-reset: earliest
+      #批量一次最大拉取数据量
+      max-poll-records: 1
+      # 是否自动提交
+      enable-auto-commit: true
+      #自动提交时间间隔
+      auto-commit-interval: 1000
+      # 消费并发量
+      batch:
+        concurrency: 1
+user:
+  rest: http://localhost:8001/api/user-server/

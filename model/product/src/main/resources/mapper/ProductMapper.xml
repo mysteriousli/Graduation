@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ligy.product.dao.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.ligy.pojo.Product">
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="PLACE" jdbcType="VARCHAR" property="place"/>
+        <result column="IPHONE" jdbcType="VARCHAR" property="iphone"/>
+        <result column="PRICE" jdbcType="DOUBLE" property="price"/>
+        <result column="TITLE" jdbcType="LONGVARCHAR" property="title"/>
+        <result column="IMG_URL" jdbcType="LONGVARCHAR" property="imgUrl"/>
+        <result column="NUM" jdbcType="INTEGER" property="num" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID
+        , NAME, PLACE, IPHONE, PRICE, TITLE, IMG_URL,NUM
+    </sql>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        <where>
+            <if test="name != null and name != '' ">
+                NAME = #{name}
+            </if>
+            <if test="place != null and place != ''">
+                and PLACE = #{place}
+            </if>
+            <if test="iphone != null and iphone != ''">
+                and IPHONE = #{iphone}
+            </if>
+            <if test="price != null">
+                and PRICE = #{price}
+            </if>
+            <if test="title != null and title != ''">
+                and TITLE = #{title}
+            </if>
+            <if test="imgUrl != null and imgUrl != ''">
+                and IMG_URL = #{imgUrl}
+            </if>
+            <if test="num != null">
+                and NUM = #{num}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where ID = #{id}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete
+        from product
+        where ID = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.ligy.pojo.Product">
+        insert into product (ID, NAME, PLACE,
+                             IPHONE, PRICE, TITLE,
+                             IMG_URL, NUM)
+        values (#{id}, #{name}, #{place},
+                #{iphone}, #{price}, #{title},
+                #{imgUrl}, #{num})
+    </insert>
+
+    <update id="update" parameterType="com.ligy.pojo.Product">
+        update product
+        <set>
+            <if test="name != null">
+                NAME = #{name},
+            </if>
+            <if test="place != null">
+                PLACE = #{place},
+            </if>
+            <if test="iphone != null">
+                IPHONE = #{iphone},
+            </if>
+            <if test="price != null">
+                PRICE = #{price},
+            </if>
+            <if test="title != null">
+                TITLE = #{title},
+            </if>
+            <if test="imgUrl != null">
+                IMG_URL = #{imgUrl},
+            </if>
+            <if test="num != null">
+                NUM = #{num},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <update id="reduceById" parameterType="com.ligy.pojo.Product">
+        update product set num=num-1 where ID = #{id} and num > 0;
+    </update>
+
+</mapper>

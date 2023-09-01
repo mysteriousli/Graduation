@@ -1,0 +1,41 @@
+server:
+  port: 13003
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: localhost:8848
+        ip: localhost
+      config:
+        # 配置中心地址
+        server-addr: localhost:8848
+        # 配置文件格式
+        file-extension: yml
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true # 只能识别小写
+          enabled: true #服务注册发现
+  liquibase:
+    change-log: classpath:liquibase/master.xml
+    enabled: false
+
+Cookie:
+  uums: ligy
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: com.example.produce.enums

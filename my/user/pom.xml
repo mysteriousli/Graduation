@@ -5,22 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ligy</groupId>
-        <artifactId>Graduation</artifactId>
+        <artifactId>my</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>common-core</module>
-        <module>common-security</module>
-    </modules>
-
+    <artifactId>user</artifactId>
+    <name>user</name>
+    <description>user</description>
     <properties>
+        <java.version>8</java.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 </project>

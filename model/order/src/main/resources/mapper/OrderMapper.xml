@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ligy.order.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.ligy.pojo.Order">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="PRICE" jdbcType="DOUBLE" property="price" />
+    <result column="PLACE" jdbcType="LONGVARCHAR" property="place" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, NAME, TITLE, PRICE, PLACE
+  </sql>
+
+  <select id="selectList" parameterType="com.ligy.pojo.Order" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from `order`
+      <if test="name != null and name !=''">
+          NAME = #{name}
+      </if>
+      <if test="title != null and title !=''">
+          and TITLE = #{title}
+      </if>
+      <if test="price != null">
+          and PRICE = #{price}
+      </if>
+      <if test="place != null and place !=''">
+          and PLACE = #{place}
+      </if>
+  </select>
+
+  <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where ID = #{id}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from `order`
+    where ID = #{id}
+  </delete>
+
+  <insert id="insert" parameterType="com.ligy.pojo.Order" useGeneratedKeys="true" keyProperty="id">
+    insert into `order` (NAME, TITLE,
+      PRICE, PLACE)
+    values ( #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{price,jdbcType=DOUBLE}, #{place,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.ligy.pojo.Order">
+    update `order`
+    <set>
+      <if test="name != null">
+        NAME = #{name},
+      </if>
+      <if test="title != null">
+        TITLE = #{title},
+      </if>
+      <if test="price != null">
+        PRICE = #{price},
+      </if>
+      <if test="place != null">
+        PLACE = #{place}
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+</mapper>

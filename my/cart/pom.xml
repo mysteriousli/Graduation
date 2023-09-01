@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ligy</groupId>
-        <artifactId>Graduation</artifactId>
+        <artifactId>my</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>common-core</module>
-        <module>common-security</module>
-    </modules>
+    <artifactId>cart</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

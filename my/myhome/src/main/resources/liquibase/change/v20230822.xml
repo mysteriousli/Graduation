@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="20230825" author="lgy">
+        <createTable remarks="用户信息表" tableName="user">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_NAME" remarks="用户账号" type="VARCHAR(125)" />
+            <column name="PASSWORD" remarks="用户密码" type="TEXT" />
+            <column name="NAME" remarks="用户昵称" type="VARCHAR(100)" />
+            <column name="EMAIL" remarks="用户邮箱" type="VARCHAR(100)" />
+            <column name="ROLE" remarks="用户角色" type="int" />
+            <column name="IPHONE" remarks="用户手机号" type="VARCHAR(100)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="202308251712" author="lgy">
+        <addColumn tableName="user">
+            <column name="UUMS" remarks="UUMS" type="VARCHAR(125)" />
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

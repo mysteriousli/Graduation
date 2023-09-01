@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="202308251549" author="lgy">
+        <createTable remarks="订单信息表" tableName="order">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" remarks="订单名称" type="VARCHAR(125)" />
+            <column name="TITLE" remarks="订单标题" type="VARCHAR(125)" />
+            <column name="PLACE" remarks="配送地址" type="TEXT" />
+            <column name="PRICE" remarks="订单总金额" type="DOUBLE" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202308251550" author="lgy">
+        <createTable remarks="订单产品关系信息表" tableName="order_produce_refer">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" remarks="产品id" type="INT" />
+            <column name="order_id" remarks="订单id" type="INT" />
+            <column name="NUM" remarks="产品数量" type="INT" />
+            <column name="PRICE" remarks="产品金额" type="DOUBLE" />
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

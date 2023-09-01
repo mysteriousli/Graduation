@@ -5,22 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ligy</groupId>
-        <artifactId>Graduation</artifactId>
+        <artifactId>my</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>common-core</module>
-        <module>common-security</module>
-    </modules>
+    <artifactId>myhome</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+    </dependencies>
 </project>

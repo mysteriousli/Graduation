@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ligy.order.dao.OrderProduceReferMapper">
+  <resultMap id="BaseResultMap" type="com.ligy.pojo.OrderProduceRefer">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="NUM" jdbcType="INTEGER" property="num" />
+    <result column="PRICE" jdbcType="DOUBLE" property="price" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, product_id, order_id, NUM, PRICE
+  </sql>
+  <select id="selectList" parameterType="com.ligy.pojo.OrderProduceRefer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_produce_refer
+    where
+    <if test="productId != null">
+      product_id = #{productId,jdbcType=INTEGER}
+    </if>
+    <if test="orderId != null">
+      and order_id = #{orderId,jdbcType=INTEGER}
+    </if>
+    <if test="num != null">
+      and NUM = #{num,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+      and PRICE = #{price,jdbcType=DOUBLE}
+    </if>
+  </select>
+
+  <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_produce_refer
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from order_produce_refer
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.ligy.pojo.OrderProduceRefer">
+    insert into order_produce_refer (ID, product_id, order_id, 
+      NUM, PRICE)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE})
+  </insert>
+
+  <update id="update" parameterType="com.ligy.pojo.OrderProduceRefer">
+    update order_produce_refer
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,41 @@
+server:
+  port: 13005
+  tomcat:
+    connection-timeout: 6000
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB #单个文件最大为20M
+      max-request-size: 10MB #单次请求文件总数大小为20M
+      file-size-threshold: 0
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: product-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/product?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: localhost:8848
+        ip: localhost
+      config:
+        # 配置中心地址
+        server-addr: localhost:8848
+        # 配置文件格式
+        file-extension: yml
+  liquibase:
+    change-log: classpath*:liquibase/master.xml
+    enabled: true
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  type-enums-package: com.example.produce.enums
